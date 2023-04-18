@@ -8,6 +8,8 @@ TODO
 
 require 'socket'
 
+# A class defining all information relating to a gopher server
+# including methods to interact and retrieve resources from it
 class Gopher_Server
     def initialize(host, port)
         @host = host
@@ -22,6 +24,8 @@ class Gopher_Server
         @socket.close()
     end
 
+    # Given a resource location on the main server, connect to the
+    # Server and retrieve the resource
     def get(resource)
         self.open_socket
         @socket.print("#{resource}\r\n")
@@ -30,6 +34,7 @@ class Gopher_Server
         return response
     end
 
+    # TODO: Implement resource parsing, datatype and more
     def parse_response(response)
         arr_response = response.split("\r\n")
 
